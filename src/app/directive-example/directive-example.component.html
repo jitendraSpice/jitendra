@@ -1,0 +1,14 @@
+<button type="button" name="button" (click)="toglebuttonflag()">toggle dcHeroes</button>
+<div *ngIf="togleHeroflag">
+    <div class="" *ngFor="let hero of dcHeroes; let i=index" appAppBold>
+        {{index+1}}){{hero}}
+    </div>
+</div>
+<!-- <div [ngSwitch]="">
+<div *ngSwitchCase="">batman</div>
+<div *ngSwitchCase="">super man</div>
+<div *ngSwitchCase="">sup</div>
+<div *ngSwitchCase="">batman</div>
+<div *ngSwitchCase="">batman</div>
+</div> -->
+

@@ -1,0 +1,14 @@
+<img [src]="imageUrlchild" alt="">
+<ul class="list-group">
+  <!-- <li class="list-group-item">{{GOTCharcter[0]}}</li> -->
+  <li class="list-group-item">{{GOTCharcter[1]}}</li>
+  <li class="list-group-item">{{GOTCharcter[2]}}</li>
+  <li class="list-group-item">{{GOTCharcter[3]}}</li>
+  </ul>
+  <button name="button" (click)="chanelistcontent()" class="btn btn-primary">Change event</button>
+  <button name="button" (click)="stopprog()" [disabled]="propflag" class="btn btn-danger">Stopp</button>
+  <div>
+   <div class="">
+    <input type="text" [(ngModel)]="twowayData1" [value]="twowayData1" name="" value="">
+    {{twowayData1}}
+  </div>
