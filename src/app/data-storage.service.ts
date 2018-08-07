@@ -11,5 +11,6 @@ export class DataStorageService {
   }
   getdata(){
     return this.http.get('https://myfirst-firebase-project-d730b.firebaseio.com/user.json');
+    console.log('get data is working fine');
   }
 }
