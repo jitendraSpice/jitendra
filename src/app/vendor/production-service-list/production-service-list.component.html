@@ -1,0 +1,160 @@
+
+  <div class="wrapper row-offcanvas row-offcanvas-left">
+ 
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <aside >
+           <form [formGroup]="stagingServiceForm">
+          <div class="container">
+              <div class="row mar-tb5 pr-2">
+                  <div class="col-9 col-md-9 pl-4">
+                      <i class="fa fa-reply font-18 mr-4" aria-hidden="true"></i>
+                      <nav class="breadcrumb">
+  
+                          <a class="breadcrumb-item" href="/vendor/dashboard/productionAppServices">Production App</a>
+                          
+                      </nav>
+                  </div>
+  
+              </div>
+          </div>
+  
+  
+  
+          <section class="content-header pad-lr10 mt-0 dept-header">
+          
+              <div class="row">
+                  <div class="col-8 col-md-8 mar-b5">
+                      <div class="page-title pt-0">
+                          eDistrict Delhi
+                      </div>
+  
+                      <div class="search__container">
+  
+                          <input class="search__input" type="text" placeholder="Search" formControlName="SearchText" >
+                        
+                      </div>
+                  </div>
+                  <div class="col-4 col-md-4 text-right">
+                      <table class="pull-right wide-100 ">
+                          <tr><td>
+                            <button type='button' name='' class="wide-100 btn mt-2 mr-1 btn-sm btn-danger" (click)="open(costModel)">View API Cost</button>
+                          </td>
+                      <td><button type='button' (click)="RaisedApiIssue()" name='' class="wide-100 btn mt-2 btn-sm btn-danger">Raise API Issue</button><br>
+                      </td></tr>
+                      <tr><td colspan="2"><button type='button' (click)="RequestProductionApi()" class="wide-100 btn btn-sm btn-success">Request Production API</button>
+                  </td></tr></table>
+                  </div>
+  
+              </div>
+  
+          </section>
+  
+      
+  
+          <!-- Main content -->
+          <section class="content">
+              <!-- Small boxes (Stat box) -->
+              <div class=" container">
+              <div class="row">
+                  <div *ngFor="let item of serviceList | customApiManagerFilter:{name:stagingServiceForm.get('SearchText').value}" class="col-lg-3 col-md-4 col-sm-6 mar-b20 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-aqua text-center">
+                          <div class="inner ">
+                              <span>
+                                  <img [src]="getImagePath(item)">
+                              </span>
+                              <p class="mar-b0 extra">
+                                {{item.name}}
+                              </p>
+                          </div>
+                          <div class="pull-left wide-100 box-footer  pad-lr10">
+                              <span class="footer-btn-right"><button type="button" class="btn btn-primary btn-sm">Read Doc</button></span>
+                              <!-- <span class="footer-btn-center"><button type="button" class="btn btn-primary btn-sm" (click)="open(costModel,item.departmentName)">View API Cost</button></span> -->
+                          </div>
+                           
+                      </div>
+                  </div><!-- ./col ends-->
+                                            
+              </div><!-- /.row -->
+          </div> 
+          </section><!-- /.content -->
+        </form>
+      </aside><!-- /.right-side ends -->
+  </div><!-- ./wrapper -->
+  
+  <ng-template #costModel let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">eDistrict Delhi</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group relative" *ngIf="serviceCost">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">API Name </th>
+                      <th scope="col">Staging API Cost</th>
+                      <th scope="col">Free Hits</th>
+                      <th scope="col">API Hits Limit</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of serviceCost">
+                      <th scope="row">{{data.name}}</th>
+                      <td>{{data.prices}}</td>
+                      <td>{{data.freeHits}}/{{data.freeHitsUnit}}</td>
+                      <td>{{data.tiers}}</td>
+                   </tr>
+                   
+                  </tbody>
+                </table>
+    
+          </div>
+          <div *ngIf="!serviceCost">No Record Found</div>
+         
+      </div>
+      <div class="modal-footer pt-0">
+       
+      <button type="button"class="btn btn-danger pad-tb5" (click)="modal.dismiss()">Ok</button>
+       
+    </div>
+    </ng-template>
+  
+    <!-- <ng-template #viewServiceModal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">eDistrict Delhi</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div  *ngIf="serviceList">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Assigned Services</th>
+                          <th scope="col">Staging APIs</th>
+                          <th scope="col">API Version</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of serviceList">
+                          <th scope="row">{{data.name}}</th>
+                          <td>{{data.status}}</td>
+                          <td>{{data.vesrion}}</td>
+                       </tr>
+                       
+                      </tbody>
+                    </table>
+        
+              </div>
+              <div *ngIf="!serviceList">No Record Found</div>
+             
+          </div>
+          <div class="modal-footer pt-0">
+          <button type="button"class="btn btn-danger pad-tb5" (click)="modal.dismiss()">Ok</button>
+         
+        </div>
+        </ng-template> -->
